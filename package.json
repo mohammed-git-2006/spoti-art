@@ -8,15 +8,33 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/x-charts": "^9.7.0",
+    "@mui/x-data-grid": "^9.7.0",
+    "@studio-freight/lenis": "^1.0.42",
+    "@types/recharts": "^1.8.29",
+    "face-api.js": "^0.22.2",
+    "gsap": "^3.15.0",
+    "motion": "^12.40.0",
     "next": "16.2.9",
+    "ogl": "^1.0.11",
+    "postprocessing": "^6.39.1",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-icons": "^5.6.0",
+    "recharts": "^3.9.0",
+    "three": "^0.184.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/mongodb": "^4.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.184.1",
+    "jsonwebtoken": "^9.0.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
