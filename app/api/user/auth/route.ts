@@ -51,7 +51,10 @@ export const GET = async (
     })
 
     if (userInfoResponse.status != 200)
+    {
+      console.log(`/api/user/auth => userInfoResponse.status != 200 => ${userInfoResponse.status}:\n\t- ${await userInfoResponse.text()}`)
       throw `Failed to fetch user profile`
+    }
 
     const userInfo : UserProfile = await userInfoResponse.json();
     userInfo.access_token = data.access_token;

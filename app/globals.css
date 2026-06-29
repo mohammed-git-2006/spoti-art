@@ -15,7 +15,8 @@
 body {
   background-color: var(--bg);
   color : var(--tp);
-  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
+  font-family: 'Elms Sans';
   /* font-family: 'Fira Sans', sans-serif; */
 }
 

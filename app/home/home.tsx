@@ -245,6 +245,7 @@ export default function HomePage(
     fetch('/api/user/statistics').then(async r => {
       if (r.status != 200)
       {
+        setError('Failed to start analysis. Try again later.')
         let c = await r.json();
         console.log(`Status not 200 : ${JSON.stringify(c)}`);
         return;
@@ -278,6 +279,16 @@ export default function HomePage(
         if (d.startsWith('ERROR:'))
         {
           const errorD = d.split('ERROR:')[1];
+
+          if (errorD == 'Redirect')
+          {
+            evtSource.close();
+            fetch('/api/user/logout').then(_ => {
+              window.location.pathname = '/';
+            })
+            
+            return;
+          }
           
           setEventMsg('Error encountered');
           
@@ -295,8 +306,14 @@ export default function HomePage(
         setError('')
       };
 
-      evtSource.onerror = () => {
+      evtSource.onerror = (error) => {
         setEventMsg('Error triggered while doing analysis')
+        setError('Failed to start analysis process. Try again later.');
+        console.log(error)
+        setInterval(() => {
+          setEventMsg('');
+          setAnalysisStatus('off')
+        }, 2000)
         evtSource.close();
       };
 
@@ -336,9 +353,9 @@ export default function HomePage(
                   bg-green-500 group-hover:scale-y-100 
                   scale-y-0 origin-top"></span>
                   <span className="z-10 tracking-wider font-bold text-green-500
-                  group-hover:text-white mb-1">
+                  group-hover:text-white mb-1 text-center">
                     {analysisStatus == 'off' && 'Run Analysis'}
-                    {analysisStatus != 'off' && <span className="tp">{eventMsg}</span> }
+                    {analysisStatus != 'off' && <span className="tp text-center">{eventMsg}</span> }
                   </span>
                   {analysisStatus == 'off' && <span className="z-10 uppercase tracking-wider font-medium text-white
                   border border-white rounded-sm p-1 text-xs 
